@@ -1,4 +1,6 @@
-hello
-lets learn devops
-  lets learn aws
+public class hello {
+  public static void main(string[]args) {
+    system.out.println("hello from Jenkins + Maven "}:
+}
+}
 
