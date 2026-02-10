@@ -1,0 +1,78 @@
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
+                              https://maven.apache.org/xsd/settings-1.0.0.xsd">
+
+  <!-- Mirror for Nexus (optional) -->
+  <mirrors>
+    <mirror>
+      <id>nexus</id>
+      <mirrorOf>*</mirrorOf>
+      <url>http://15.206.166.234:8081/repository/maven-public/</url>
+    </mirror>
+  </mirrors>
+
+  <!-- Profiles with repository definitions -->
+  <profiles>
+    <profile>
+      <id>nexus</id>
+
+      <!-- Repositories for downloading dependencies -->
+      <repositories>
+        <repository>
+          <id>central</id>
+          <url>https://repo.maven.apache.org/maven2</url>
+          <releases>
+            <enabled>true</enabled>
+          </releases>
+          <snapshots>
+            <enabled>true</enabled>
+          </snapshots>
+        </repository>
+      </repositories>
+
+      <!-- Plugin repositories -->
+      <pluginRepositories>
+        <pluginRepository>
+          <id>central</id>
+          <url>https://repo.maven.apache.org/maven2</url>
+          <releases>
+            <enabled>true</enabled>
+          </releases>
+          <snapshots>
+            <enabled>true</enabled>
+          </snapshots>
+        </pluginRepository>
+      </pluginRepositories>
+
+      <!-- Distribution management for deploying artifacts -->
+      <distributionManagement>
+        <repository>
+          <id>nexus</id>
+          <name>Nexus Releases</name>
+          <url>http://15.206.166.234:8081/repository/maven-releases/</url>
+        </repository>
+        <snapshotRepository>
+          <id>nexus</id>
+          <name>Nexus Snapshots</name>
+          <url>http://15.206.166.234:8081/repository/maven-snapshots/</url>
+        </snapshotRepository>
+      </distributionManagement>
+    </profile>
+  </profiles>
+
+  <!-- Activate the Nexus profile -->
+  <activeProfiles>
+    <activeProfile>nexus</activeProfile>
+  </activeProfiles>
+
+  <!-- Servers with credentials -->
+  <servers>
+    <server>
+      <id>nexus</id>
+      <username>${NEXUS_USER}</username>
+      <password>${NEXUS_PASS}</password>
+    </server>
+  </servers>
+
+</settings>
