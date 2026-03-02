@@ -3,7 +3,7 @@
           xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
                               https://maven.apache.org/xsd/settings-1.0.0.xsd">
 
-  <!-- Mirror for Nexus (optional) -->
+  <!-- Mirror: all dependency downloads go via Nexus -->
   <mirrors>
     <mirror>
       <id>nexus</id>
@@ -12,12 +12,11 @@
     </mirror>
   </mirrors>
 
-  <!-- Profiles with repository definitions -->
+  <!-- Profile (optional but fine to keep) -->
   <profiles>
     <profile>
       <id>nexus</id>
 
-      <!-- Repositories for downloading dependencies -->
       <repositories>
         <repository>
           <id>central</id>
@@ -31,42 +30,20 @@
         </repository>
       </repositories>
 
-      <!-- Plugin repositories -->
       <pluginRepositories>
         <pluginRepository>
           <id>central</id>
           <url>https://repo.maven.apache.org/maven2</url>
-          <releases>
-            <enabled>true</enabled>
-          </releases>
-          <snapshots>
-            <enabled>true</enabled>
-          </snapshots>
         </pluginRepository>
       </pluginRepositories>
-
-      <!-- Distribution management for deploying artifacts -->
-      <distributionManagement>
-        <repository>
-          <id>nexus</id>
-          <name>Nexus Releases</name>
-          <url>http://13.201.242.194:8081/repository/maven-releases/</url>
-        </repository>
-        <snapshotRepository>
-          <id>nexus</id>
-          <name>Nexus Snapshots</name>
-          <url>http://13.201.242.194:8081/repository/maven-snapshots/</url>
-        </snapshotRepository>
-      </distributionManagement>
     </profile>
   </profiles>
 
-  <!-- Activate the Nexus profile -->
   <activeProfiles>
     <activeProfile>nexus</activeProfile>
   </activeProfiles>
 
-  <!-- Servers with credentials -->
+  <!-- Credentials -->
   <servers>
     <server>
       <id>nexus</id>
