@@ -1,46 +1,33 @@
-<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
-          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
-                              https://maven.apache.org/xsd/settings-1.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             https://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-  <mirrors>
-    <mirror>
-      <id>nexus</id>
-      <mirrorOf>*</mirrorOf>
-      <url>http://13.201.242.194:8081/repository/maven-public/</url>
-    </mirror>
-  </mirrors>
+    <modelVersion>4.0.0</modelVersion>
 
-  <profiles>
-    <profile>
-      <id>nexus</id>
+    <groupId>com.example</groupId>
+    <artifactId>java-demo</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
-      <repositories>
+    <name>java-demo</name>
+
+    <!-- REQUIRED FOR mvn deploy -->
+    <distributionManagement>
         <repository>
-          <id>central</id>
-          <url>https://repo.maven.apache.org/maven2</url>
+            <id>nexus</id>
+            <url>http://13.201.242.194:8081/repository/maven-releases/</url>
         </repository>
-      </repositories>
 
-      <pluginRepositories>
-        <pluginRepository>
-          <id>central</id>
-          <url>https://repo.maven.apache.org/maven2</url>
-        </pluginRepository>
-      </pluginRepositories>
-    </profile>
-  </profiles>
+        <snapshotRepository>
+            <id>nexus</id>
+            <url>http://13.201.242.194:8081/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
 
-  <activeProfiles>
-    <activeProfile>nexus</activeProfile>
-  </activeProfiles>
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+    </properties>
 
-  <servers>
-    <server>
-      <id>nexus</id>
-      <username>${NEXUS_USER}</username>
-      <password>${NEXUS_PASS}</password>
-    </server>
-  </servers>
-
-</settings>
+</project>
