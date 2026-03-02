@@ -1,33 +1,78 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
-                             https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
+                              https://maven.apache.org/xsd/settings-1.0.0.xsd">
 
-    <modelVersion>4.0.0</modelVersion>
+  <!-- Mirror for Nexus (optional) -->
+  <mirrors>
+    <mirror>
+      <id>nexus</id>
+      <mirrorOf>*</mirrorOf>
+      <url>http://13.201.242.194/repository/maven-public/</url>
+    </mirror>
+  </mirrors>
 
-    <groupId>com.example</groupId>
-    <artifactId>java-demo</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
+  <!-- Profiles with repository definitions -->
+  <profiles>
+    <profile>
+      <id>nexus</id>
 
-    <name>java-demo</name>
-
-    <!-- REQUIRED FOR mvn deploy -->
-    <distributionManagement>
+      <!-- Repositories for downloading dependencies -->
+      <repositories>
         <repository>
-            <id>nexus</id>
-            <url>http://13.201.242.194:8081/repository/maven-releases/</url>
+          <id>central</id>
+          <url>https://repo.maven.apache.org/maven2</url>
+          <releases>
+            <enabled>true</enabled>
+          </releases>
+          <snapshots>
+            <enabled>true</enabled>
+          </snapshots>
         </repository>
+      </repositories>
 
+      <!-- Plugin repositories -->
+      <pluginRepositories>
+        <pluginRepository>
+          <id>central</id>
+          <url>https://repo.maven.apache.org/maven2</url>
+          <releases>
+            <enabled>true</enabled>
+          </releases>
+          <snapshots>
+            <enabled>true</enabled>
+          </snapshots>
+        </pluginRepository>
+      </pluginRepositories>
+
+      <!-- Distribution management for deploying artifacts -->
+      <distributionManagement>
+        <repository>
+          <id>nexus</id>
+          <name>Nexus Releases</name>
+          <url>https://13.201.242.194/repository/maven-releases/</url>
+        </repository>
         <snapshotRepository>
-            <id>nexus</id>
-            <url>http://13.201.242.194:8081/repository/maven-snapshots/</url>
+          <id>nexus</id>
+          <name>Nexus Snapshots</name>
+          <url>https://13.201.242.194/repository/maven-snapshots/</url>
         </snapshotRepository>
-    </distributionManagement>
+      </distributionManagement>
+    </profile>
+  </profiles>
 
-    <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
-    </properties>
+  <!-- Activate the Nexus profile -->
+  <activeProfiles>
+    <activeProfile>nexus</activeProfile>
+  </activeProfiles>
 
-</project>
+  <!-- Servers with credentials -->
+  <servers>
+    <server>
+      <id>nexus</id>
+      <username>${admin}</username>
+      <password>${zxcvbnm}</password>
+    </server>
+  </servers>
+
+</settings>
