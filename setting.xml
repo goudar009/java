@@ -3,7 +3,6 @@
           xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
                               https://maven.apache.org/xsd/settings-1.0.0.xsd">
 
-  <!-- Mirror: all dependency downloads go via Nexus -->
   <mirrors>
     <mirror>
       <id>nexus</id>
@@ -12,7 +11,6 @@
     </mirror>
   </mirrors>
 
-  <!-- Profile (optional but fine to keep) -->
   <profiles>
     <profile>
       <id>nexus</id>
@@ -21,12 +19,6 @@
         <repository>
           <id>central</id>
           <url>https://repo.maven.apache.org/maven2</url>
-          <releases>
-            <enabled>true</enabled>
-          </releases>
-          <snapshots>
-            <enabled>true</enabled>
-          </snapshots>
         </repository>
       </repositories>
 
@@ -43,7 +35,6 @@
     <activeProfile>nexus</activeProfile>
   </activeProfiles>
 
-  <!-- Credentials -->
   <servers>
     <server>
       <id>nexus</id>
