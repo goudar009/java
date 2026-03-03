@@ -70,9 +70,14 @@
   <servers>
     <server>
       <id>nexus</id>
-      <username>${admin}</username>
-      <password>${zxcvbnm}</password>
+      <username>admin</username>
+      <password>zxcvbnm</password>
+    </server>
+
+    <server>
+      <id>nexus-snapshots</id>
+      <username>admin</username>
+      <password>zxcvbnm</password>
     </server>
   </servers>
-
 </settings>
